@@ -1,4 +1,5 @@
-import { checkAuth, logout } from '../fetch-utils.js';
+import { checkAuth, logout, getWorkshops } from '../fetch-utils.js';
+import { renderWorkshop } from '../render-utils.js';
 
 checkAuth();
 

@@ -1,6 +1,18 @@
-import { getWorkshops } from '../fetch-utils.js';
-
+import { getWorkshops, createParticipant } from '../fetch-utils.js';
+const workshopId = document.getElementById('workshop_id');
 const form = document.getElementById('form');
+
+console.log('option');
+
+window.addEventListener('load', async () => {
+    const workshops = await getWorkshops();
+    for (let workshop of workshops) {
+        const option = document.createElement('option');
+        option.textContent = `${workshop.name}`;
+        option.value = `${workshop.id}`;
+        workshopId.append(option);
+    }
+});
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();

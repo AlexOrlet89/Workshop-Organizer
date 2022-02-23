@@ -7,3 +7,9 @@ export async function renderWorkshop(workshop) {
     return div;
 
 }
+
+export async function renderParticipants(participant) {
+    const div = document.createElement('div');
+    div.textContent = `${participant.name}`;
+    return div;
+}

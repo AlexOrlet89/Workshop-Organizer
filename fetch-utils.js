@@ -7,6 +7,15 @@ export async function getWorkshops() {
     const response = await client.from('workshops').select(`*, workshopParticipants (*)`);
     return checkError(response);
 }
+export async function createParticipant(participant) {
+    const response = await client.from('workshopParticipants').insert([
+        { name: `${participant.name}`,
+            workshop_id: `${participant.workshopId}`,
+            contact: `${participant.contact}` }
+    ]);
+    return checkError(response);
+}
+
 
 export function getUser() {
     return client.auth.session() && client.auth.session().user;

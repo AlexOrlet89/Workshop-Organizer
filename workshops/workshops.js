@@ -4,6 +4,7 @@ import { renderWorkshop, renderParticipants } from '../render-utils.js';
 checkAuth();
 const logoutButton = document.getElementById('logout');
 const addButton = document.getElementById('addParticipant');
+const addWorkshopButton = document.getElementById('addWorkshop');
 const catalog = document.getElementById('catalog');
 
 logoutButton.addEventListener('click', () => {
@@ -12,6 +13,9 @@ logoutButton.addEventListener('click', () => {
 
 addButton.addEventListener('click', ()=> {
     location.replace('../addParticipants');
+});
+addWorkshopButton.addEventListener('click', ()=> {
+    location.replace('../addWorkshop');
 });
 
 window.addEventListener('load', async () => {

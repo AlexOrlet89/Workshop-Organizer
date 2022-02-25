@@ -1,4 +1,4 @@
-import { checkAuth, logout, getWorkshops } from '../fetch-utils.js';
+import { checkAuth, logout, getWorkshops, deleteParticipant } from '../fetch-utils.js';
 import { renderWorkshop, renderParticipants } from '../render-utils.js';
 
 checkAuth();
@@ -22,8 +22,22 @@ window.addEventListener('load', async () => {
         const div = await renderWorkshop(workshop);
         for (let participant of workshop.workshopParticipants) {
             const nameDiv = await renderParticipants(participant);
+            nameDiv.addEventListener('click', async ()=> {
+                console.log(participant.id);
+                await deleteParticipant(participant.id);
+                displayWorkshops();
+            });
+            
+            
+            
+            
+            // addeventlistener to nameDiv that deletes, add delete function to fetch-utils, refactor line 22-? as a display function
             div.append(nameDiv);
         }
         catalog.append(div);
     }
 });
+
+async function displayWorkshops(workshops) {
+    
+}

@@ -1,7 +1,8 @@
-import { getWorkshops, createParticipant } from '../fetch-utils.js';
+import { getWorkshops, createParticipant, checkAuth } from '../fetch-utils.js';
 const workshopId = document.getElementById('workshop_id');
 const form = document.getElementById('form');
 
+checkAuth();
 console.log('option');
 
 window.addEventListener('load', async () => {
@@ -19,4 +20,9 @@ form.addEventListener('submit', async (e) => {
     const formData = new FormData(form);
     const name = formData.get('name');
     const contact = formData.get('contact');
+    const workshopId = formData.get('workshop_id');
+    console.log(name, contact, workshopId, 'test');
+    await createParticipant({ name, workshopId, contact });
+    location.replace('./workshops');
+
 });

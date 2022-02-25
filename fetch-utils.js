@@ -13,6 +13,7 @@ export async function createParticipant(participant) {
             workshop_id: `${participant.workshopId}`,
             contact: `${participant.contact}` }
     ]);
+    console.log(participant.name);
     return checkError(response);
 }
 

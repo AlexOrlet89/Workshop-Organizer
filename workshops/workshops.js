@@ -16,8 +16,13 @@ addButton.addEventListener('click', ()=> {
 });
 
 window.addEventListener('load', async () => {
+    console.log('window load');
+    displayWorkshops();
+});
+
+async function displayWorkshops() {
     const workshops = await getWorkshops();
-    console.log('window load', workshops);
+    catalog.textContent = '';
     for (let workshop of workshops) {
         const div = await renderWorkshop(workshop);
         for (let participant of workshop.workshopParticipants) {
@@ -25,19 +30,11 @@ window.addEventListener('load', async () => {
             nameDiv.addEventListener('click', async ()=> {
                 console.log(participant.id);
                 await deleteParticipant(participant.id);
-                displayWorkshops();
+                await displayWorkshops();
             });
-            
-            
-            
-            
-            // addeventlistener to nameDiv that deletes, add delete function to fetch-utils, refactor line 22-? as a display function
             div.append(nameDiv);
         }
         catalog.append(div);
     }
-});
-
-async function displayWorkshops(workshops) {
     
 }

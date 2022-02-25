@@ -5,7 +5,6 @@ const logoutButton = document.getElementById('logout');
 const backButton = document.getElementById('back');
 
 checkAuth();
-console.log('option');
 
 logoutButton.addEventListener('click', ()=> {
     logout();
@@ -32,7 +31,6 @@ form.addEventListener('submit', async (e) => {
     const name = formData.get('name');
     const contact = formData.get('contact');
     const workshopId = formData.get('workshop_id');
-    console.log(name, contact, workshopId, 'test');
     await createParticipant({ name, workshopId, contact });
     location.replace('../');
 

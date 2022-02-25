@@ -11,12 +11,10 @@ logoutButton.addEventListener('click', () => {
 });
 
 addButton.addEventListener('click', ()=> {
-    console.log('click');
     location.replace('../addParticipants');
 });
 
 window.addEventListener('load', async () => {
-    console.log('window load');
     displayWorkshops();
 });
 
@@ -28,7 +26,6 @@ async function displayWorkshops() {
         for (let participant of workshop.workshopParticipants) {
             const nameDiv = await renderParticipants(participant);
             nameDiv.addEventListener('click', async ()=> {
-                console.log(participant.id);
                 await deleteParticipant(participant.id);
                 await displayWorkshops();
             });

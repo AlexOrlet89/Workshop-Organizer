@@ -5,6 +5,7 @@ const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 export async function deleteParticipant(id) {
     const response = await client.from('workshopParticipants').delete().eq('id', id);
+    return checkError(response);
 }
 
 export async function getWorkshops() {
@@ -17,7 +18,6 @@ export async function createParticipant(participant) {
             workshop_id: `${participant.workshopId}`,
             contact: `${participant.contact}` }
     ]);
-    console.log(participant.name);
     return checkError(response);
 }
 

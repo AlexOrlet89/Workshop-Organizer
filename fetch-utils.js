@@ -21,6 +21,17 @@ export async function createParticipant(participant) {
     return checkError(response);
 }
 
+export async function createWorkshop(workshop, participants) {
+    const response = await client.from('workshop').insert([
+        { name: `${workshop.name}`, },
+    ]);
+    for (let participant of participants) {
+        await createParticipant(participant);
+    }
+    
+    checkError(response);
+}
+
 
 export function getUser() {
     return client.auth.session() && client.auth.session().user;

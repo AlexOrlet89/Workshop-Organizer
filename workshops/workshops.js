@@ -26,8 +26,12 @@ async function displayWorkshops() {
         for (let participant of workshop.workshopParticipants) {
             const nameDiv = await renderParticipants(participant);
             nameDiv.addEventListener('click', async ()=> {
-                await deleteParticipant(participant.id);
-                await displayWorkshops();
+                if (confirm('Are you sure you want to delete participant?')) {
+                    await deleteParticipant(participant.id);
+                    await displayWorkshops();
+                } else {
+                    await displayWorkshops();
+                }
             });
             div.append(nameDiv);
         }

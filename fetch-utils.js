@@ -3,6 +3,12 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+export async function currentWorkshopId() {
+    const response = await client.from('workshops').select(`id`).order('id', { ascending: false }).limit(1);
+    return checkError(response);
+}
+
+
 export async function deleteParticipant(id) {
     const response = await client.from('workshopParticipants').delete().eq('id', id);
     return checkError(response);
@@ -21,15 +27,12 @@ export async function createParticipant(participant) {
     return checkError(response);
 }
 
-export async function createWorkshop(workshop, participants) {
-    const response = await client.from('workshop').insert([
-        { name: `${workshop.name}`, },
+export async function createWorkshop(workshop) {
+    const response = await client.from('workshops').insert([
+        { name: `${workshop}`, },
     ]);
-    for (let participant of participants) {
-        await createParticipant(participant);
-    }
     
-    checkError(response);
+    return checkError(response);
 }
 
 
